@@ -1,9 +1,7 @@
 package com.reviewservice.learning;
 
 import net.minidev.json.JSONObject;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -17,6 +15,14 @@ public class controller {
     public reviews review1 (@RequestParam(value = "name",defaultValue = "world")String name,@RequestParam(value = "id",defaultValue = "1")Long idin){
         reviews rev=new reviews(idin,name);
             return rev;
+        }
+        @PostMapping("/test")
+        public String test(){
+        return "test";
+        }
+        @RequestMapping(value = "**",method = {RequestMethod.GET,RequestMethod.POST})
+    public String test1(){
+        return "error";
         }
 
 
