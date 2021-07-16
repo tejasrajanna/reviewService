@@ -21,10 +21,10 @@ public class users {
     private int reviewerId;
 
 
-    public users(String id,String username,String lastName,int reviewerId){
-       this.id=id;
+    public users(String username,String FirstName,String LastName,int reviewerId){
        this.username=username;
-       this.LastName=lastName;
+       this.FirstName=FirstName;
+       this.LastName=LastName;
        this.reviewerId=reviewerId;
     }
 
@@ -42,5 +42,25 @@ public class users {
 
     public String getLastName(){
         return LastName;
+    }
+
+    public int getReviewerId() {
+        return reviewerId;
+    }
+
+    public void setFirstName(String firstName) {
+        this.FirstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.LastName = lastName;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setReviewerId(int reviewerId) {
+        this.reviewerId = reviewerId;
     }
 }
