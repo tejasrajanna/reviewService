@@ -3,6 +3,8 @@ package com.reviewservice.learning.service;
 
 import com.reviewservice.learning.repository.UserRepository;
 import com.reviewservice.learning.model.users;
+import lombok.Data;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +21,7 @@ public class UserService {
         userRepository.insert(user);
 
     }
-    public void updateUsers(users user){
+    public void updateUsers(@NotNull users user){
         users users=userRepository.findById(user.getId())
                 .orElseThrow(() -> new RuntimeException(
                         String.format("cannot find user by Id",user.getId())));

@@ -32,7 +32,7 @@ public class hotels {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getAddress() {

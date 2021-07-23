@@ -19,22 +19,46 @@ public class userController {
 
     @PostMapping
     public ResponseEntity addUser(@RequestBody users users){
-        userService.addusers(users);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        try {
+            userService.addusers(users);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }
+
+        catch (Exception e){
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
     @PutMapping
     public ResponseEntity  updateUser(@RequestBody users user){
-        userService.updateUsers(user);
-        return ResponseEntity.ok().build();
+        try {
+
+
+            userService.updateUsers(user);
+            return ResponseEntity.ok().build();
+        }
+
+        catch (Exception e){
+            return ResponseEntity.internalServerError().build();
+        }
+
 
     }
 
    @GetMapping
     public ResponseEntity<List<users>> getAllUsers(){
+        try {
 
-        return ResponseEntity.ok(userService.getAllUsers());
+            return ResponseEntity.ok(userService.getAllUsers());
+        }
+
+        catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
     }
+
+
+
 
     @DeleteMapping
     public void getUserbyUsername(){
