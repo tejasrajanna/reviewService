@@ -3,6 +3,7 @@ package com.reviewservice.learning.service;
 import com.reviewservice.learning.model.hotels;
 import com.reviewservice.learning.repository.HotelRepository;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,9 +30,7 @@ public class HotelService {
         return hotelRepository.findById(id);
     }
 
-    public List<hotels> fingByHotelName(@NotNull String name){
-        return hotelRepository.findAll();
-    }
+
 
     public void updateHotel(hotels hotels){
 

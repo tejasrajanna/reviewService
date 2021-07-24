@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -17,9 +18,15 @@ public class UserService {
         this.userRepository=userRepository;
     }
 
-    public void addusers(users user) {
-        userRepository.insert(user);
-
+    public boolean addusers(users user) {
+        if(userRepository.existsByUsername(user.getUsername()).equals(false)){
+            return Boolean.FALSE;
+        }
+        else if(userRepository.existsByUsername(user.getUsername()).equals(false)) {
+            userRepository.insert(user);
+            return Boolean.TRUE;
+        }
+        return Boolean.TRUE;
     }
     public void updateUsers(@NotNull users user){
         users users=userRepository.findById(user.getId())
@@ -41,7 +48,8 @@ public class UserService {
 
 
     }
-    public void getUserByUsername(){
+    public Optional<users> getUserByUsername(users user){
+        return userRepository.findAllByUsername(user.getUsername());
 
     }
 }

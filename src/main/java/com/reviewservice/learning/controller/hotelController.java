@@ -51,7 +51,8 @@ public class hotelController {
 
     @GetMapping
     public ResponseEntity <List<hotels>> findByHotelName(@RequestBody hotels hotel){
-        return ResponseEntity.ok(hotelService.fingByHotelName("chungs"));
+        //return ResponseEntity.ok(hotelService.fingByHotelName("chungs"));
+     return ResponseEntity.ok().build();
     }
 }
 

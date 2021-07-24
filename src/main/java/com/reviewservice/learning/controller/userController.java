@@ -2,11 +2,16 @@ package com.reviewservice.learning.controller;
 
 import com.reviewservice.learning.model.users;
 import com.reviewservice.learning.service.UserService;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.server.DelegatingServerHttpResponse;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
@@ -18,19 +23,28 @@ public class userController {
     }
 
     @PostMapping
+    @Validated
     public ResponseEntity addUser(@RequestBody users users){
         try {
-            userService.addusers(users);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
+            Boolean res=userService.addusers(users);
+            System.out.println(res);
+            if(res.equals(Boolean.FALSE)){
+                return ResponseEntity.status(HttpStatus.CREATED).build();
+            }
+            else{
+                throw new Exception("Exception message");
+            }
+
         }
 
         catch (Exception e){
-            return ResponseEntity.internalServerError().build();
+            return ResponseEntity.unprocessableEntity().build();
         }
     }
 
     @PutMapping
-    public ResponseEntity  updateUser(@RequestBody users user){
+    @Validated
+    public ResponseEntity  updateUser(@NotNull @RequestBody users user){
         try {
 
 
@@ -46,13 +60,14 @@ public class userController {
     }
 
    @GetMapping
-    public ResponseEntity<List<users>> getAllUsers(){
+    public ResponseEntity<Optional<users>> getAllUsers(@RequestBody users user){
         try {
 
-            return ResponseEntity.ok(userService.getAllUsers());
+            return ResponseEntity.ok(userService.getUserByUsername(user));
         }
 
         catch (Exception e){
+            System.out.println(e);
             return ResponseEntity.notFound().build();
         }
     }

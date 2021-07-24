@@ -1,5 +1,9 @@
 package com.reviewservice.learning;
 
+
+import lombok.Data;
+
+
 public class error {
     private String err="requested content is not found";
     private int id1;
