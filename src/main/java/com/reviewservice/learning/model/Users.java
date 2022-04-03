@@ -1,5 +1,6 @@
 package com.reviewservice.learning.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -10,8 +11,9 @@ import javax.persistence.Id;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Document("users")
-public class users {
+public class Users {
     @Id
     private String id;
     @Field(name="name")

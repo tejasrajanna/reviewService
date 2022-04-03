@@ -1,30 +1,27 @@
 package com.reviewservice.learning.controller;
 
-import com.reviewservice.learning.model.users;
+import com.reviewservice.learning.model.Users;
 import com.reviewservice.learning.service.UserService;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.server.DelegatingServerHttpResponse;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
-public class userController {
+public class UserController {
     private final UserService userService;
 
-    public userController(UserService userService){
+    public UserController(UserService userService){
         this.userService=userService;
     }
 
     @PostMapping
     @Validated
-    public ResponseEntity addUser(@RequestBody users users){
+    public ResponseEntity addUser(@RequestBody Users users){
         try {
             Boolean res=userService.addusers(users);
             System.out.println(res);
@@ -44,7 +41,7 @@ public class userController {
 
     @PutMapping
     @Validated
-    public ResponseEntity  updateUser(@NotNull @RequestBody users user){
+    public ResponseEntity  updateUser(@NotNull @RequestBody Users user){
         try {
 
 
@@ -60,7 +57,7 @@ public class userController {
     }
 
    @GetMapping
-    public ResponseEntity<Optional<users>> getAllUsers(@RequestBody users user){
+    public ResponseEntity<Optional<Users>> getAllUsers(@RequestBody Users user){
         try {
 
             return ResponseEntity.ok(userService.getUserByUsername(user));
@@ -75,11 +72,6 @@ public class userController {
 
 
 
-    @DeleteMapping
-    public void getUserbyUsername(){
-
-    }
-
-
+  
 
 }

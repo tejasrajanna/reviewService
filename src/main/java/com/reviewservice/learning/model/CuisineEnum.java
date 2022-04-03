@@ -1,5 +1,5 @@
 package com.reviewservice.learning.model;
 
-public enum cuisineenum {
+public enum CuisineEnum {
     CHINESE,ASIAN,CONTINENTAL,INDIAN,FASTFOOD
 }
