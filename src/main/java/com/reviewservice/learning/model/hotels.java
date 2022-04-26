@@ -1,18 +1,19 @@
 package com.reviewservice.learning.model;
 
 
+import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.Id;
-
+@Data
 @Document("hotels")
 public class hotels {
     @Id
     private String id;
     @Field(name = "HName")
     private String name;
-    @Field(name="cusine")
+    @Field(name="cuisine")
     private cuisineenum cuisine;
     @Field(name="address")
     private  String address;
